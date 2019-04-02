@@ -1,7 +1,5 @@
 # ge-cnn
 
-Deep Neuroevolution with Grammatical Evolution
-
 ## Description
 
 A framework to design CNNs automatically through the use of a Grammatical Evolution algorithm.

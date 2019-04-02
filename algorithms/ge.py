@@ -50,11 +50,10 @@ class GrammaticalEvolution(BaseEvolutionaryAlgorithm):
     def evaluate_solution(self, solution):
 
         if not solution.evaluated:
-            fitness, model = self.problem.evaluate(solution)
+            return self.problem.evaluate(solution)
         else:
-            fitness, model = solution.fitness, solution.phenotype
+            return solution.fitness, solution.phenotype
 
-        return fitness, model
 
     def evaluate_population(self, population):
 

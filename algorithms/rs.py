@@ -31,7 +31,10 @@ class RandomSearch(BaseEvolutionaryAlgorithm):
 
     def evaluate_solution(self, solution):
 
-        return self.problem.evaluate(solution, self.verbose)
+        if not solution.evaluated:
+            return self.problem.evaluate(solution)
+        else:
+            return solution.fitness, solution.phenotype
 
     def execute(self):
 
@@ -59,12 +62,12 @@ class RandomSearch(BaseEvolutionaryAlgorithm):
                 population.append(self.best)
             population.sort(key=lambda x: x.fitness, reverse=self.maximize)
 
-            best = population[0].copy(deep=True)
-            self.evals += len(population)
+            self.best = population[0].copy(deep=True)
+            self.evals += self.max_processes
 
             self.print_progress()
 
-        return best
+        return self.best
 
     def print_progress(self):
         curr_time = time.strftime('%x %X')
